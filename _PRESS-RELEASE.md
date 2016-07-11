@@ -1,4 +1,5 @@
-# Project Name #
+<!-- # Project Name # -->
+# Friendly Towing #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,28 +18,37 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > A friendly alternative to conventional towing.
+ 
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+<!--   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title. -->
+  > Making it possible to communicate with vehicle owners in order to prevent costly and inconvenient towing.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+<!--   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good. -->
+  > Returning to your car to find it has been towed unpleasant and typically avoidable. By providing a platform to communicate with vehicle owners based on license plate number, violators can be given a chance to move their vehicle or provide a destination for towing. 
 
 ## Problem ##
-  > Describe the problem your product solves.
+<!--   > Describe the problem your product solves. -->
+ > Returning to your car to find it has been towed unpleasant and typically avoidable.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+<!--   > Describe how your product elegantly solves the problem.-->
+ > By providing a platform to communicate with vehicle owners based on license plate number, violators can be given a chance to come move their vehicle or provide a destination for towing.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+<!--   > A quote from a spokesperson in your company.-->
+ > When you ask around to people who have experienced the surprise of having their car towed, you quickly realize a common residual disgust, no matter how distant the experience.
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+<!--   > Describe how easy it is to get started.-->
+ > Just type in your license plate number and phone number, and you're good to go.
+
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+<!--   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.-->
+ > I accidently parked in a reserved space at my friend's apartment complex last Saturday, and, thanks to FriendlyTowing, the space's owner was able to contact me to move my car. If it weren't for FriendlyTowing, I would be out $400 dollars and the better part of a Saturday.
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
