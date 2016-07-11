@@ -7,4 +7,4 @@ module.exports = function(app) {
 
   //logging
   app.use(morgan('dev'));
-}
+};
