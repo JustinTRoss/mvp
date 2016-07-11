@@ -9,6 +9,7 @@ var userSchema = new Schema({
   incidences: {type: Number, default: 0}
 });
 userSchema.set('timestamps', true);
+
 var User = mongoose.model('User', userSchema);
 
 module.exports = User;
