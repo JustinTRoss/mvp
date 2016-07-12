@@ -38,14 +38,15 @@ module.exports = {
             "subject" : towEvent.subject
           }
         };
-
+        //send text to vehicle owner
         return text.sendText(textData.phone, textData.message, textData.options,
           function(err) {
+            //error sending text:
             if (err) {
-              console.log('errorrrrrr', err);
+              throw err;
               res.send(`We found the owner, but our free texting API had trouble getting a message through. Please resend that once more.`);
+            //success sending text:
             } else {
-              console.log('noerr: ', err);
               res.send(`A text has been sent to the owner`);
             }
           }

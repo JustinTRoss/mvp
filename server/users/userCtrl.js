@@ -17,22 +17,15 @@ var users = [
 ];
 
 module.exports = {
+  //add new user to DB
   addUser: function(req, res) {
     User.create(req.body, function(err, user) {
       res.status(200).send(`Thanks for signing up ${user}! ~ Hopefully you\'ll never need our services`);
     });
   },
 
-//note!! - Move promise chain over to toweventctrl
+  //send message to violator and add new event to DB
   getUser: function(req, res) {
     return User.findOne({ 'licensePlate': req.body.licensePlate }).exec();
-      // .then(function(data) {
-      //   console.log(data);
-      //   if (data.didSend) {
-      //     res.send(`A text has been sent to the owner`);
-      //   } else {
-      //     res.send(`We found the owner, but our free texting API had trouble getting a message through. Please resend that once more.`);
-      //   }
-      // });
   }
 }
