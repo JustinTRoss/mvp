@@ -24,21 +24,8 @@ module.exports = {
     });
   },
 
+//note!! - Move promise chain over to toweventctrl
   getUser: function(req, res) {
     return User.findOne({ 'licensePlate': req.body.licensePlate }).exec()
-      .then(function(result) {
-        console.log('<~~~~~~~~~~~~~~~ whoop whoop ~~~~~~~~~~', result);
-        res.send()
-      });
-
-    // text.sendText(6198230738, 'testo-facto',
-    //   {
-    //     fromAddr: 'ross.justin.t@gmail.com',
-    //     fromName: 'Justin Ricka Ross',
-    //     region: 'us',
-    //     subject: 'get some bruh'
-    //   }, function(response) { console.log('this is the response: ', response) }
-    // );
-
   }
 }
