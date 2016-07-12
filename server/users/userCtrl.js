@@ -1,5 +1,4 @@
 // var mongoose =require('../config/mongoose.js');
-var text = require('textbelt');
 var User = require('./userModel.js');
 
 var users = [
@@ -26,6 +25,14 @@ module.exports = {
 
 //note!! - Move promise chain over to toweventctrl
   getUser: function(req, res) {
-    return User.findOne({ 'licensePlate': req.body.licensePlate }).exec()
+    return User.findOne({ 'licensePlate': req.body.licensePlate }).exec();
+      // .then(function(data) {
+      //   console.log(data);
+      //   if (data.didSend) {
+      //     res.send(`A text has been sent to the owner`);
+      //   } else {
+      //     res.send(`We found the owner, but our free texting API had trouble getting a message through. Please resend that once more.`);
+      //   }
+      // });
   }
 }
