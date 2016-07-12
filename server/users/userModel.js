@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
   name: {type: String, required: true},
-  phone: {type: String, required: true},
+  phone: {type: String, required: true}, //consider not allowing duplicate phone/license pairs
   licensePlate: {type: String, required: true},
   towAddress: {type: String, required: true},
   incidences: {type: Number, default: 0}

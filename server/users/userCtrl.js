@@ -19,15 +19,16 @@ var users = [
 
 module.exports = {
   addUser: function(req, res) {
-    User.create(req.body);
-    res.status(200).send('Thanks for signing up! ~ Hopefully you\'ll never need our services');
+    User.create(req.body, function(err, user) {
+      res.status(200).send(`Thanks for signing up ${user}! ~ Hopefully you\'ll never need our services`);
+    });
   },
 
   getUser: function(req, res) {
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', req.body);
-    return User.findOne({ 'name' : req.body.name })
-      .then(function(err, result) {
+    return User.findOne({ 'licensePlate': req.body.licensePlate }).exec()
+      .then(function(result) {
         console.log('<~~~~~~~~~~~~~~~ whoop whoop ~~~~~~~~~~', result);
+        res.send()
       });
 
     // text.sendText(6198230738, 'testo-facto',
