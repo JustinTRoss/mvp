@@ -20519,11 +20519,11 @@
 	
 	var _View2 = _interopRequireDefault(_View);
 	
-	var _RegisterView = __webpack_require__(179);
+	var _RegisterView = __webpack_require__(178);
 	
 	var _RegisterView2 = _interopRequireDefault(_RegisterView);
 	
-	var _summary = __webpack_require__(178);
+	var _summary = __webpack_require__(179);
 	
 	var _summary2 = _interopRequireDefault(_summary);
 	
@@ -20544,7 +20544,7 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this));
 	
 	    _this.state = {
-	      formType: _react2.default.createElement(_RegisterView2.default, null)
+	      formType: _react2.default.createElement(_RegisterView2.default, { onSubmit: _this.registerSubmit.bind(_this) })
 	    };
 	    return _this;
 	  }
@@ -20558,6 +20558,39 @@
 	          formType: type
 	        });
 	      }
+	    }
+	  }, {
+	    key: 'registerSubmit',
+	    value: function registerSubmit(data) {
+	      console.log('ashdfjkansd;fkjnas;dfjahs;df', data);
+	      // $.ajax({
+	      //     type: 'POST',
+	      //     url: '/users',
+	      //     data: data
+	      //   })
+	      //   .done(function(data) {
+	      //     self.clearForm()
+	      //   })
+	      //   .fail(function(jqXhr) {
+	      //     console.log('failed to register');
+	      //   });
+	    }
+	  }, {
+	    key: 'contactSubmit',
+	    value: function contactSubmit(data) {
+	      var input;
+	      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>', data.target, data.target);
+	      // $.ajax({
+	      //     type: 'POST',
+	      //     url: '/towEvents',
+	      //     data: data
+	      //   })
+	      //   .done(function(data) {
+	      //     self.clearForm()
+	      //   })
+	      //   .fail(function(jqXhr) {
+	      //     console.log('failed to register');
+	      //   });
 	    }
 	  }, {
 	    key: 'render',
@@ -20577,8 +20610,8 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: ' container row center' },
-	            _react2.default.createElement(_pathBtn2.default, { btnText: 'Register Your Vehicle', icon: 'input', className: 'waves-effect waves-light btn-large col s6 left', onClick: this.changeForm.bind(this, _react2.default.createElement(_RegisterView2.default, null)) }),
-	            _react2.default.createElement(_pathBtn2.default, { btnText: 'Contact Vehicle Owner', icon: 'perm_contact_calendar', className: 'waves-effect waves-light btn-large col s6 right', onClick: this.changeForm.bind(this, _react2.default.createElement(_View2.default, null)) })
+	            _react2.default.createElement(_pathBtn2.default, { btnText: 'Register Your Vehicle', icon: 'input', className: 'waves-effect waves-light btn-large col s6 left', onClick: this.changeForm.bind(this, _react2.default.createElement(_RegisterView2.default, { onSubmit: this.registerSubmit.bind(this) })) }),
+	            _react2.default.createElement(_pathBtn2.default, { btnText: 'Contact Vehicle Owner', icon: 'perm_contact_calendar', className: 'waves-effect waves-light btn-large col s6 right', onClick: this.changeForm.bind(this, _react2.default.createElement(_View2.default, { onSubmit: this.contactSubmit.bind(this) })) })
 	          ),
 	          this.state.formType
 	        ),
@@ -21395,7 +21428,9 @@
 	    ),
 	    React.createElement(
 	      "form",
-	      { className: "col s12" },
+	      { action: "http://localhost:3000/api/towEvents", method: "post", className: "col s12", onSubmit: function onSubmit(e) {
+	          props.onSubmit(e);
+	        } },
 	      React.createElement(
 	        "div",
 	        { className: "row" },
@@ -21408,45 +21443,64 @@
 	            { "for": "license-plate" },
 	            "License Plate"
 	          )
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "div",
+	          { className: "input-field col s6" },
+	          React.createElement("input", { id: "name", type: "text", className: "validate" }),
+	          React.createElement(
+	            "label",
+	            { "for": "name" },
+	            "Name"
+	          )
 	        ),
 	        React.createElement(
 	          "div",
 	          { className: "input-field col s6" },
-	          React.createElement("input", { id: "last_name", type: "text", className: "validate" }),
+	          React.createElement("input", { id: "fromAddr", type: "email", className: "validate" }),
 	          React.createElement(
 	            "label",
-	            { "for": "last_name" },
-	            "Last Name"
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        "div",
-	        { className: "row" },
-	        React.createElement(
-	          "div",
-	          { className: "input-field col s12" },
-	          React.createElement("input", { id: "password", type: "password", className: "validate" }),
-	          React.createElement(
-	            "label",
-	            { "for": "password" },
-	            "Password"
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        "div",
-	        { className: "row" },
-	        React.createElement(
-	          "div",
-	          { className: "input-field col s12" },
-	          React.createElement("input", { id: "email", type: "email", className: "validate" }),
-	          React.createElement(
-	            "label",
-	            { "for": "email" },
+	            { "for": "fromAddr" },
 	            "Email"
 	          )
 	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "div",
+	          { className: "input-field col s12" },
+	          React.createElement("input", { id: "subject", type: "text", className: "validate" }),
+	          React.createElement(
+	            "label",
+	            { "for": "subject" },
+	            "Subject"
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "div",
+	          { className: "input-field col s12" },
+	          React.createElement("input", { id: "message", type: "text", className: "validate" }),
+	          React.createElement(
+	            "label",
+	            { "for": "message" },
+	            "Message Text"
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        "button",
+	        { type: "submit" },
+	        "Submit"
 	      )
 	    )
 	  );
@@ -21456,6 +21510,96 @@
 
 /***/ },
 /* 178 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	// Shows vehicle registration form by default
+	
+	// Toggles to show contact vehicle owner form when someone selects appropriate button
+	
+	var RegisterView = function RegisterView(props) {
+	  return React.createElement(
+	    "div",
+	    { className: "row" },
+	    React.createElement(
+	      "h3",
+	      null,
+	      "Register Your Vehicle"
+	    ),
+	    React.createElement(
+	      "form",
+	      { action: "http://localhost:3000/api/users", method: "post", className: "col s12 container", onSubmit: function onSubmit(e) {
+	          props.onSubmit(e);
+	        } },
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "div",
+	          { className: "input-field col s12" },
+	          React.createElement("input", { id: "name", type: "text", className: "validate" }),
+	          React.createElement(
+	            "label",
+	            { "for": "name" },
+	            "Full Name"
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "div",
+	          { className: "input-field col s6" },
+	          React.createElement("input", { placeholder: "7MRJ166", id: "licensePlate", type: "text", className: "validate" }),
+	          React.createElement(
+	            "label",
+	            { "for": "licensePlate" },
+	            "License Plate"
+	          )
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "input-field col s6" },
+	          React.createElement("input", { id: "Phone", type: "text", className: "validate" }),
+	          React.createElement(
+	            "label",
+	            { "for": "Phone" },
+	            "Phone Number"
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "div",
+	          { className: "input-field col s12" },
+	          React.createElement("input", { id: "towAddress", type: "text", className: "validate" }),
+	          React.createElement(
+	            "label",
+	            { "for": "towAddress" },
+	            "Preferred Tow Address"
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        "button",
+	        { type: "submit" },
+	        "Submit"
+	      )
+	    )
+	  );
+	};
+	
+	exports.default = RegisterView;
+
+/***/ },
+/* 179 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21495,75 +21639,6 @@
 	};
 	
 	exports.default = Summary;
-
-/***/ },
-/* 179 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	// Shows vehicle registration form by default
-	
-	// Toggles to show contact vehicle owner form when someone selects appropriate button
-	
-	var RegisterView = function RegisterView(props) {
-	  return React.createElement(
-	    "div",
-	    { className: "row" },
-	    React.createElement(
-	      "h3",
-	      null,
-	      "Register Your Vehicle"
-	    ),
-	    React.createElement(
-	      "form",
-	      { className: "col s12 container" },
-	      React.createElement(
-	        "div",
-	        { className: "row" },
-	        React.createElement(
-	          "div",
-	          { className: "input-field col s6" },
-	          React.createElement("input", { placeholder: "7MRJ166", id: "license-plate", type: "text", className: "validate" }),
-	          React.createElement(
-	            "label",
-	            { "for": "license-plate" },
-	            "License Plate"
-	          )
-	        ),
-	        React.createElement(
-	          "div",
-	          { className: "input-field col s6" },
-	          React.createElement("input", { id: "last_name", type: "text", className: "validate" }),
-	          React.createElement(
-	            "label",
-	            { "for": "last_name" },
-	            "Phone Number"
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        "div",
-	        { className: "row" },
-	        React.createElement(
-	          "div",
-	          { className: "input-field col s12" },
-	          React.createElement("input", { id: "password", type: "password", className: "validate" }),
-	          React.createElement(
-	            "label",
-	            { "for": "password" },
-	            "Preferred Tow Address"
-	          )
-	        )
-	      )
-	    )
-	  );
-	};
-	
-	exports.default = RegisterView;
 
 /***/ }
 /******/ ]);

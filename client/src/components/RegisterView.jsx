@@ -8,23 +8,31 @@ var RegisterView = (props) => {
       <h3>
         Register Your Vehicle
       </h3>
-      <form className="col s12 container">
+      <form action="http://localhost:3000/api/users" method="post" className="col s12 container" onSubmit={(e) => {props.onSubmit(e)}}>
+        <div className="row">
+          <div className="input-field col s12">
+            <input id="name" type="text" className="validate"></input>
+            <label for="name">Full Name</label>
+          </div>
+        </div>
         <div className="row">
           <div className="input-field col s6">
-            <input placeholder="7MRJ166" id="license-plate" type="text" className="validate"></input>
-            <label for="license-plate">License Plate</label>
+            <input placeholder="7MRJ166" id="licensePlate" type="text" className="validate"></input>
+            <label for="licensePlate">License Plate</label>
           </div>
           <div className="input-field col s6">
-            <input id="last_name" type="text" className="validate"></input>
-            <label for="last_name">Phone Number</label>
+            <input id="Phone" type="text" className="validate"></input>
+            <label for="Phone">Phone Number</label>
           </div>
         </div>
         <div className="row">
           <div className="input-field col s12">
-            <input id="password" type="password" className="validate"></input>
-            <label for="password">Preferred Tow Address</label>
+            <input id="towAddress" type="text" className="validate"></input>
+            <label for="towAddress">Preferred Tow Address</label>
           </div>
         </div>
+        <button type="submit">Submit</button>
+
       </form>
     </div>
   );
