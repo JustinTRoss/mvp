@@ -1,8 +1,9 @@
 //needs to import a controller at some point
-var UserCtrl = require('../users/UserCtrl.js');
-var TowEventCtrl = require('../towEvents/towEventCtrl.js');
+const UserCtrl = require('../users/UserCtrl.js');
+const TowEventCtrl = require('../towEvents/towEventCtrl.js');
 
-var Router = require('express').Router();
+const Router = require('express').Router();
+
 //route for adding your phone/plate number to DB.
 Router.post('/users', UserCtrl.addUser);
 

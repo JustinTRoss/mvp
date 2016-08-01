@@ -2,7 +2,7 @@ import React from 'react';
 import FootNav from './footNav';
 import HeadNav from './headNav';
 import PathBtn from './pathBtn';
-import View from './View';
+import ContactView from './View';
 import RegisterView from './RegisterView';
 import Summary from './summary';
 
@@ -12,49 +12,102 @@ class App extends React.Component {
   constructor() {
     super();
 
+    this.handleRegisterClick = this.handleRegisterClick.bind(this);
+    this.handleContactClick = this.handleContactClick.bind(this);
+    this.changeForm = this.changeForm.bind(this);
     this.state = {
-      formType: <RegisterView onSubmit={this.registerSubmit.bind(this)}/>
+      registerForm: {
+        name: '',
+        licensePlate: '',
+        phone: '',
+        towAddress: '',
+      },
+      contactForm: {
+        name: '',
+        licensePlate: '',
+        fromEmail: '',
+        subject: '',
+        message: '',
+      },
+      formType: { name: '', },
     };
   }
 
-  changeForm(type) {
+  componentWillMount() {
+    this.changeForm('register');
+  }
+
+  changeForm(formType) {
     console.log('made a clicky');
-    if (this.state.formType !== type) {
+    formType = (
+      formType === 'register'
+        ? { 
+            name: 'register',
+            form: <RegisterView
+                    handleRegisterClick={this.handleRegisterClick}
+                    registerForm={this.state.registerForm}
+                  />,
+          }
+        : {
+            name: 'contact',
+            form: <ContactView
+                    handleContactClick={this.handleContactClick}
+                    contactForm={this.state.contactForm}
+                  />
+          }
+    );
+    if (this.state.formType.name !== formType.name) {
       this.setState({
-        formType: type
+        formType: formType
       });
     }
   }
 
-  registerSubmit(data) {
-    console.log('ashdfjkansd;fkjnas;dfjahs;df', data);
-    // $.ajax({
-    //     type: 'POST',
-    //     url: '/users',
-    //     data: data
-    //   })
-    //   .done(function(data) {
-    //     self.clearForm()
-    //   })
-    //   .fail(function(jqXhr) {
-    //     console.log('failed to register');
-    //   });
+  handleRegisterClick(data) {
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>', data.target, data.target); 
+    fetch('/users', {
+      method: 'post',  
+      headers: {  
+        "Content-type": "application/json"  
+      },  
+      body: this.state.registerForm,
+    })
+    .then(res.json())
+    .then(() => {
+      this.setState({
+        registerForm: {
+          name: '',
+          licensePlate: '',
+          phone: '',
+          towAddress: '',
+        }
+      });
+    })
+    .catch(err => console.error(err));
   }
 
-  contactSubmit(data) {
-    var input 
+  handleContactClick(data) {
     console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>', data.target, data.target); 
-    // $.ajax({
-    //     type: 'POST',
-    //     url: '/towEvents',
-    //     data: data
-    //   })
-    //   .done(function(data) {
-    //     self.clearForm()
-    //   })
-    //   .fail(function(jqXhr) {
-    //     console.log('failed to register');
-    //   });
+    fetch('/towEvents', {
+      method: 'post',
+      header: {
+        "Content-type": "application/json"  
+      },  
+      body: this.state.contactForm,
+    })
+    .then(res.json())
+    .then(() => {
+      this.setState({
+        contactForm: {
+          name: '',
+          licensePlate: '',
+          fromEmail: '',
+          subject: '',
+          message: '',
+        }
+      });
+    })
+    .catch(err => console.error(err));
   }
 
   render() {
@@ -66,10 +119,20 @@ class App extends React.Component {
         <main className="Site-content col s13">
           <Summary />
           <div className=" container row center">
-            <PathBtn btnText = "Register Your Vehicle" icon="input" className="waves-effect waves-light btn-large col s6 left" onClick={this.changeForm.bind(this, <RegisterView onSubmit={this.registerSubmit.bind(this)} />)}/>
-            <PathBtn btnText = "Contact Vehicle Owner" icon="perm_contact_calendar" className="waves-effect waves-light btn-large col s6 right" onClick={this.changeForm.bind(this, <View onSubmit={this.contactSubmit.bind(this)}/>)}/>
+            <PathBtn
+              btnText="Register Your Vehicle"
+              icon="input"
+              className="waves-effect waves-light btn-large col s6 left"
+              onClick={() => this.changeForm('register')}
+            />
+            <PathBtn
+              btnText="Contact Vehicle Owner"
+              icon="perm_contact_calendar"
+              className="waves-effect waves-light btn-large col s6 right"
+              onClick={() => this.changeForm('contact')}
+            />
           </div>
-            {this.state.formType}
+            {this.state.formType.form}
         </main>
         <FootNav/>
       </div>

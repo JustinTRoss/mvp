@@ -1,6 +1,6 @@
-var text = require('textbelt');
-var UserCtrl = require('../users/UserCtrl.js')
-var TowEvent = require('./towEventModel.js');
+const text = require('textbelt');
+const UserCtrl = require('../users/UserCtrl.js')
+const TowEvent = require('./towEventModel.js');
 
 module.exports = {
   addTowEvent: function(req, res) {
@@ -28,7 +28,7 @@ module.exports = {
           res.send(`Oops.. This user hasn't yet registered their vehicle with us. To the benefit of the community, you may want to leave a note suggesting they do.`);
         }
       }).then(function(towEvent) {
-        var textData = {
+        const textData = {
           "phone" : towEvent.toPhone,
           "message" : towEvent.message,
           "options" : {
