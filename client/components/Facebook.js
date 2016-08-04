@@ -22,9 +22,7 @@ export default class Facebook extends React.Component {
         if (response.status === 'connected') {
           this.setState({
             loggedIn: true,
-            access_token: response.authResponse.accessToken,
           });
-          console.log(this.state)
         }
       });
     });
