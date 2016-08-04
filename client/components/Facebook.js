@@ -37,17 +37,24 @@ export default class Facebook extends React.Component {
     });
   }
 
+  handleLogout() {
+    $.getScript('//connect.facebook.net/en_US/sdk.js', () => {
+      FB.logout();
+    });
+    this.setState({
+      loggedIn: false,
+    });
+  }
+
   handlePostMessage() {
     const message = this.state.value;
 
     $.getScript('//connect.facebook.net/en_US/sdk.js', () => {
       FB.api(
         '/me/feed',
-        'GET',
-        {},
-        function(response) {
-          console.log(response);
-        }
+        'POST',
+        { 'message': message },
+        (response) => { console.log(response); }
       );
     });
 
@@ -63,11 +70,21 @@ export default class Facebook extends React.Component {
       </button>
     );
 
-    const facebookButton = this.state.loggedIn ? '' : facebookLogin;
+    const facebookLogout = (
+      <button onClick={this.handleLogout.bind(this)} >
+        Logout of FB
+      </button>
+    );
+
+    const facebookButton = this.state.loggedIn ? facebookLogout : facebookLogin;
 
     return (
       <div>
         <h2>Facebook</h2>
+        <div>
+          <p>E: naozcsl_schrockson_1470295782@tfbnw.net</p>
+          <p>P: Dick1234</p>
+        </div>
         <div>
           { facebookButton }
         </div>
