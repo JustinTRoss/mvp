@@ -1,38 +1,54 @@
 import React from 'react';
 
+import 'whatwg-fetch';
+
 export default class Facebook extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       value: '',
+      loggedIn: false,
     };
   }
 
-  handleClick() {
-    const message = this.state.value;
-
-    fetch('https://connect.facebook.net/en_US/sdk.js', {
-      method: 'get',
-      mode: 'cors',
-    }).then(response => {
+  componentWillMount() {
+    $.getScript('//connect.facebook.net/en_US/sdk.js', () => {
       FB.init({
         appId: '1728318677417210',
-        version: 'v2.7'
+        version: 'v2.7',
       });
       FB.getLoginStatus(response => {
         if (response.status === 'connected') {
-          console.log('response ', response);
-          console.log('Logged in.');
-          const accessToken = response.authResponse.accessToken;
-          const userID = response.authResponse.userID;
-        }
-        else {
-          FB.login();
+          this.setState({
+            loggedIn: true,
+          });
         }
       });
-    }).catch(err => {
-      console.log(err);
+    });
+  }
+
+  handleLogin() {
+    $.getScript('//connect.facebook.net/en_US/sdk.js', () => {
+      FB.login();
+    });
+    this.setState({
+      loggedIn: true,
+    });
+  }
+
+  handlePostMessage() {
+    const message = this.state.value;
+
+    $.getScript('//connect.facebook.net/en_US/sdk.js', () => {
+      FB.api(
+        '/me/feed',
+        'GET',
+        {},
+        function(response) {
+          console.log(response);
+        }
+      );
     });
 
     this.setState({
@@ -41,15 +57,26 @@ export default class Facebook extends React.Component {
   }
 
   render() {
+    const facebookLogin = (
+      <button onClick={this.handleLogin.bind(this)} >
+        Login to FB
+      </button>
+    );
+
+    const facebookButton = this.state.loggedIn ? '' : facebookLogin;
+
     return (
       <div>
         <h2>Facebook</h2>
+        <div>
+          { facebookButton }
+        </div>
         Facebook Message To Post:
         <input
           value={this.state.value}
           onChange={(e) => { this.setState({ value: e.target.value }); }}
         />
-        <button onClick={this.handleClick.bind(this)} >
+        <button onClick={this.handlePostMessage.bind(this)} >
           Post to FB
         </button>
       </div>
