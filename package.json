@@ -22,12 +22,21 @@
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
+<<<<<<< ec611c84002d63a79bdcdbb87c783de102a51ada
     "es6-promise": "^3.2.1",
+=======
+    "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
+>>>>>>> add nodal twitterapi micro service and update front-end
     "eslint": "^3.1.1",
     "eslint-plugin-import": "^1.11.1",
     "eslint-plugin-jsx-a11y": "^2.0.1",
     "express": "^4.14.0",
+<<<<<<< ec611c84002d63a79bdcdbb87c783de102a51ada
     "isomorphic-fetch": "^2.2.1",
+=======
+    "morgan": "^1.7.0",
+>>>>>>> add nodal twitterapi micro service and update front-end
     "path": "^0.12.7",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
