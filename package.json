@@ -1,0 +1,39 @@
+{
+  "name": "mvp",
+  "version": "1.0.0",
+  "description": "demo twitter url grab, facebook post, linkedin post",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch & nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdubie/mvp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdubie/mvp/issues"
+  },
+  "homepage": "https://github.com/mdubie/mvp#readme",
+  "dependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "eslint": "^3.1.1",
+    "eslint-plugin-import": "^1.11.1",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
+    "express": "^4.14.0",
+    "path": "^0.12.7",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "webpack": "^1.13.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb": "^10.0.0",
+    "eslint-plugin-react": "^6.0.0"
+  }
+}
