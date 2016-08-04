@@ -9,6 +9,7 @@ export default class Facebook extends React.Component {
     this.state = {
       value: '',
       loggedIn: false,
+      userProfile: {},
     };
   }
 
@@ -43,6 +44,35 @@ export default class Facebook extends React.Component {
     });
     this.setState({
       loggedIn: false,
+    });
+  }
+
+  handleCaptureUser() {
+    $.getScript('//connect.facebook.net/en_US/sdk.js', () => {
+      FB.api(
+        '/me/feed',
+        'GET',
+        {},
+        (response) => {
+          const userProfile = this.state.userProfile;
+          userProfile.feed = response.data;
+          this.setState({
+            userProfile,
+          })
+        }
+      );
+      FB.api(
+        '/me/likes',
+        'GET',
+        {},
+        (response) => {
+          const userProfile = this.state.userProfile;
+          userProfile.likes = response.data;
+          this.setState({
+            userProfile,
+          })
+        }
+      );
     });
   }
 
@@ -82,8 +112,16 @@ export default class Facebook extends React.Component {
       <div>
         <h2>Facebook</h2>
         <div>
-          <p>E: naozcsl_schrockson_1470295782@tfbnw.net</p>
-          <p>P: Dick1234</p>
+          <p>E: gpognhk_okelolaberg_1470317798@tfbnw.net</p>
+          <p>P: David1234</p>
+        </div>
+        <div>
+          <p>E: yqeatmx_occhinostein_1470317797@tfbnw.net</p>
+          <p>P: Rick1234</p>
+        </div>
+        <div>
+          <p>E: kikgfnh_chaiescu_1470317800@tfbnw.net</p>
+          <p>P: Mark1234</p>
         </div>
         <div>
           { facebookButton }
@@ -96,6 +134,12 @@ export default class Facebook extends React.Component {
         <button onClick={this.handlePostMessage.bind(this)} >
           Post to FB
         </button>
+        <button onClick={this.handleCaptureUser.bind(this)} >
+          Capture user profile
+        </button>
+        <div>
+          { JSON.stringify(this.state.userProfile) }
+        </div>
       </div>
     );
   }
