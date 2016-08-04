@@ -7,7 +7,20 @@ import Twitter from './Twitter.js';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      twitterInputValue: '',
+    };
+    this.handleTwitterInputChange = this.handleTwitterInputChange.bind(this);
   }
+
+  handleTwitterInputChange(event) {
+    this.setState({
+      twitterInputValue: event.target.value,
+    });
+  }
+
+
 
   render() {
     return (
@@ -15,7 +28,10 @@ export default class App extends React.Component {
         <h1>App</h1>
         <Facebook />
         <LinkedIn />
-        <Twitter />
+        <Twitter
+          twitterInputValue={this.state.twitterInputValue}
+          handleTwitterInputChange={this.handleTwitterInputChange}
+        />
       </div>
     )
   }
