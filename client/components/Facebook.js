@@ -1,6 +1,6 @@
 import React from 'react';
 
-import 'whatwg-fetch';
+import { FACEBOOK_APP_ID } from '../../__secrets.js';
 
 export default class Facebook extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export default class Facebook extends React.Component {
   componentWillMount() {
     $.getScript('//connect.facebook.net/en_US/sdk.js', () => {
       FB.init({
-        appId: '1728318677417210',
+        appId: FACEBOOK_APP_ID,
         version: 'v2.7',
       });
       FB.getLoginStatus(response => {
